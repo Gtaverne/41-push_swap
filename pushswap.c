@@ -1,11 +1,9 @@
 #include "./includes/pushswap.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
-	if (ac < 2)
-	{
-		ft_putstr("Error\n");
-		return 0;
-	}
-	return 0;
+	t_a	a;
+
+	ft_initstruct(&a, ac, av);
+	return (0);
 }

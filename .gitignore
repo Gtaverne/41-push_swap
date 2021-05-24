@@ -1,0 +1,5 @@
+object/*.o
+object/*/*.o
+push_swap
+a.out
+test.txt
