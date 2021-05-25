@@ -14,6 +14,12 @@ typedef struct s_a {
 	char	**raw_str;
 	int		*lst;
 	int		sep;
+	int		med;
+	int		minpos;
+	int		minval;
+	int		maxpos;
+	int		maxval;
+	int		opcount;
 }				t_a;
 
 //utils
@@ -30,11 +36,20 @@ void	ft_freesplit(char **str);
 char	*ft_strdup(char *s);
 void	ft_cleanexit(t_a *a, char *exit_message, int fd);
 
+//debug -- utilise printf
+void	ft_printlist(t_a *a);
 
 //Parser
 void	ft_parser(t_a *a);
 
-//Basics
+//Sort
+void	ft_sort(t_a *a);
+void	ft_med(t_a *a, int init, int end);
+void	ft_minpos(t_a *a, int init, int end);
+void	ft_maxpos(t_a *a, int init, int end);
+void	ft_move_right(t_a *a, int val);
+
+//Swappers
 void	ft_sa(t_a *a);
 void	ft_sb(t_a *a);
 void	ft_ss(t_a *a);

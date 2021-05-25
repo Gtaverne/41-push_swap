@@ -7,6 +7,12 @@ void	ft_initstruct(t_a *a, int ac, char **av)
 	a->sep = 0;
 	a->lst = 0;
 	a->raw_str = 0;
+	a->opcount = 0;
+	a->med = 0;
+	a->minpos = 0;
+	a->minval = 0;
+	a->maxpos = 0;
+	a->maxval = 0;
 }
 
 void	ft_cleanexit(t_a *a, char *exit_message, int fd)

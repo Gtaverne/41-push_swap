@@ -6,5 +6,6 @@ int	main(int ac, char **av)
 
 	ft_initstruct(&a, ac, av);
 	ft_parser(&a);
+	ft_sort(&a);
 	return (0);
 }

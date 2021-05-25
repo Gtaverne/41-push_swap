@@ -3,7 +3,12 @@ CC		=	clang
 HEADER	=	includes/pushswap.h
 OBJDIR	=	object
 SRC		=	pushswap.c \
-			srcs/utils.c srcs/utils2.c srcs/parsing.c srcs/split.c
+			srcs/utils.c srcs/utils2.c \
+			srcs/in-utils.c \
+			srcs/parsing.c srcs/split.c \
+			\
+			srcs/swappers.c srcs/swappers2.c srcs/rev_med.c \
+			srcs/sort.c
 
 OBJ 	=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
