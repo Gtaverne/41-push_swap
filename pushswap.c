@@ -5,5 +5,6 @@ int	main(int ac, char **av)
 	t_a	a;
 
 	ft_initstruct(&a, ac, av);
+	ft_parser(&a);
 	return (0);
 }

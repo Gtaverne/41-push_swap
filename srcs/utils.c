@@ -12,9 +12,9 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_putstr(char *str)
+void	ft_putstr_fd(char *str, int fd)
 {
-	write(1, str, ft_strlen(str));
+	write(fd, str, ft_strlen(str));
 }
 
 int	ft_atoi(const char *nptr)
@@ -26,15 +26,11 @@ int	ft_atoi(const char *nptr)
 	i = 0;
 	r = 0;
 	s = 1;
-	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
-		i++;
 	if (nptr[i] == '-')
 	{
 		s = -1;
 		i++;
 	}
-	else if (nptr[i] == '+')
-		i++;
 	while (nptr[i] != '\0')
 	{
 		if (nptr[i] >= '0' && nptr[i] <= '9')
@@ -44,4 +40,36 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	return (s * r);
+}
+
+char	*ft_strdup(char *s)
+{
+	char	*res;
+	int		i;
+	int		len;
+
+	i = 0;
+	len = ft_strlen(s) + 1;
+	res = malloc(sizeof(char) * len);
+	if (!res)
+		return (NULL);
+	while (i < len)
+	{
+		res[i] = s[i];
+		i++;
+	}
+	return (res);
+}
+
+void	ft_freesplit(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
 }

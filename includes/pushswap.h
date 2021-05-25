@@ -5,18 +5,34 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+# define DEBUG 1
+
 typedef struct s_a {
 	int		ac;
 	char	**av;
+	int		lst_len;
+	char	**raw_str;
 	int		*lst;
 	int		sep;
 }				t_a;
 
 //utils
 int		ft_strlen(char *str);
-void	ft_putstr(char *str);
+void	ft_putstr_fd(char *str, int fd);
 int		ft_atoi(const char *nptr);
 void	ft_initstruct(t_a *a, int ac, char **av);
+int		is_insep(char c, char *sep);
+int		ft_wrdlen(char *str, char *sep);
+int		ft_wcount(char *str, char *sep);
+char	*ft_wrdcpy(char *src, int wlen);
+char	**ft_split(char *str, char *charset);
+void	ft_freesplit(char **str);
+char	*ft_strdup(char *s);
+void	ft_cleanexit(t_a *a, char *exit_message, int fd);
+
+
+//Parser
+void	ft_parser(t_a *a);
 
 //Basics
 void	ft_sa(t_a *a);
@@ -30,6 +46,5 @@ void	ft_rr(t_a *a);
 void	ft_rra(t_a *a);
 void	ft_rrb(t_a *a);
 void	ft_rrr(t_a *a);
-
 
 #endif
