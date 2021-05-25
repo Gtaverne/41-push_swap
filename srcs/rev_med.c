@@ -111,6 +111,8 @@ void	ft_move_right(t_a *a, int val)
 	i = a->sep - 1;
 	while (i >= 0)
 	{
+		ft_printlist(a);
+		printf("Checked element : %d\n", a->lst[i]);
 		if (a->lst[i] <= val)
 			ft_pb(a);
 		else
