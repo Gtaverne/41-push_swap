@@ -122,4 +122,5 @@ void	ft_move_right(t_a *a, int val_min, int val_max, int num)
 			ft_ra(a);
 		i--;
 	}
+	a->ramember = 0;
 }

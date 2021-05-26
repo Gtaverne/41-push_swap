@@ -6,7 +6,7 @@
 # include <stdio.h>
 
 # define DEBUG 1
-# define BATCHSIZE 100
+# define BATCHSIZE 50
 
 typedef struct s_a {
 	int		ac;
@@ -22,6 +22,7 @@ typedef struct s_a {
 	int		maxval;
 	int		strat_tab[4];
 	int		strat;
+	int		ramember;
 	int		*quantile;
 	int		numquant;
 	int		opcount;

@@ -3,8 +3,8 @@
 void	ft_ra(t_a *a)
 {
 	int	tmp;
-	int i;
-	
+	int	i;
+
 	a->opcount++;
 	ft_putstr_fd("ra\n", 1);
 	if (a->sep > 1)
@@ -23,8 +23,8 @@ void	ft_ra(t_a *a)
 void	ft_rb(t_a *a)
 {
 	int	tmp;
-	int i;
-	
+	int	i;
+
 	a->opcount++;
 	ft_putstr_fd("rb\n", 1);
 	if (a->sep < a->lst_len - 1)
@@ -43,30 +43,24 @@ void	ft_rb(t_a *a)
 void	ft_rr(t_a *a)
 {
 	int	tmp;
-	int i;
-	
+	int	i;
+
 	a->opcount++;
 	ft_putstr_fd("rr\n", 1);
 	if (a->sep > 1)
 	{
-		i = a->sep - 1;
+		i = a->sep;
 		tmp = a->lst[a->sep - 1];
-		while (i > 0)
-		{
+		while (--i > 0)
 			a->lst[i] = a->lst[i - 1];
-			i--;
-		}
 		a->lst[0] = tmp;
 	}
-		if (a->sep < a->lst_len - 1)
+	if (a->sep < a->lst_len - 1)
 	{
-		i = a->sep;
+		i = a->sep - 1;
 		tmp = a->lst[a->sep];
-		while (i < a->lst_len - 1)
-		{
+		while (++i < a->lst_len - 1)
 			a->lst[i] = a->lst[i + 1];
-			i++;
-		}
 		a->lst[a->lst_len - 1] = tmp;
 	}
 }
@@ -74,8 +68,8 @@ void	ft_rr(t_a *a)
 void	ft_rra(t_a *a)
 {
 	int	tmp;
-	int i;
-	
+	int	i;
+
 	a->opcount++;
 	ft_putstr_fd("rra\n", 1);
 	if (a->sep > 1)
@@ -94,8 +88,8 @@ void	ft_rra(t_a *a)
 void	ft_rrb(t_a *a)
 {
 	int	tmp;
-	int i;
-	
+	int	i;
+
 	a->opcount++;
 	ft_putstr_fd("rrb\n", 1);
 	if (a->sep < a->lst_len - 1)
