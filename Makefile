@@ -27,7 +27,6 @@ bonus: all
 
 $(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "${GREEN}Compilation Done${RESET}"
 
 $(OBJDIR)/%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@

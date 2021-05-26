@@ -6,6 +6,7 @@
 # include <stdio.h>
 
 # define DEBUG 1
+# define BATCHSIZE 100
 
 typedef struct s_a {
 	int		ac;
@@ -19,6 +20,10 @@ typedef struct s_a {
 	int		minval;
 	int		maxpos;
 	int		maxval;
+	int		strat_tab[4];
+	int		strat;
+	int		*quantile;
+	int		numquant;
 	int		opcount;
 }				t_a;
 
@@ -47,7 +52,7 @@ void	ft_sort(t_a *a);
 void	ft_med(t_a *a, int init, int end);
 void	ft_minpos(t_a *a, int init, int end);
 void	ft_maxpos(t_a *a, int init, int end);
-void	ft_move_right(t_a *a, int val);
+void	ft_move_right(t_a *a, int val_min, int val_max, int num);
 
 //Swappers
 void	ft_sa(t_a *a);

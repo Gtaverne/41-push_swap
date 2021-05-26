@@ -104,17 +104,20 @@ void	ft_maxpos(t_a *a, int init, int end)
 	a->maxval = max;
 }
 
-void	ft_move_right(t_a *a, int val)
+void	ft_move_right(t_a *a, int val_min, int val_max, int num)
 {
 	int	i;
+	int k;
 
 	i = a->sep - 1;
-	while (i >= 0)
+	k = a->sep - 1;
+	while (i >= a->lst_len - num)
 	{
-		ft_printlist(a);
-		printf("Checked element : %d\n", a->lst[i]);
-		if (a->lst[i] <= val)
+		if (a->lst[k] <= val_max && a->lst[k] >= val_min)
+		{
 			ft_pb(a);
+			k--;
+		}
 		else
 			ft_ra(a);
 		i--;

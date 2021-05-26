@@ -36,7 +36,7 @@ void	ft_convert_list_to_int(t_a *a)
 		exit(1);
 	while (i < a->lst_len)
 	{
-		a->lst[i] = ft_atoi(a->raw_str[i]);
+		a->lst[i] = ft_atoi(a->raw_str[a->lst_len - 1 - i]);
 		i++;
 	}
 	i = 1;
@@ -46,7 +46,7 @@ void	ft_convert_list_to_int(t_a *a)
 		while (k < i)
 		{
 			if (a->lst[k] == a->lst[i])
-				ft_cleanexit(a, "KO, valeur en doublon\n", 2);
+				ft_cleanexit(a, "KO\n", 2);
 			k++;
 		}
 		i++;
