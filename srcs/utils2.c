@@ -21,9 +21,11 @@ void	ft_cleanexit(t_a *a, char *exit_message, int fd)
 		ft_freesplit(a->raw_str);
 	if (a->lst != 0)
 		free (a->lst);
+	if (a->quantile != 0)
+		free (a->quantile);
 	if (DEBUG == 0 && exit_message[0] == 'K')
 		ft_putstr_fd("KO\n", fd);
 	else
 		ft_putstr_fd(exit_message, fd);
-	exit (1);
+	exit (fd - 1);
 }

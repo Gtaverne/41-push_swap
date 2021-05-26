@@ -57,7 +57,9 @@ void	ft_initializer(t_a *a)
 	ft_med(a, 0, a->lst_len - 1);
 	ft_minpos(a, 0, a->lst_len);
 	ft_maxpos(a, 0, a->lst_len);
-	a->numquant = a->lst_len / BATCHSIZE + a->lst_len % BATCHSIZE;
+	a->numquant = a->lst_len / BATCHSIZE + (a->lst_len % BATCHSIZE > 0);
+	a->quantile = malloc(sizeof(int) * a->numquant);
+	ft
 	//ft_printlist(a);
 	//printf("Voici la situation initiale\n*****************************");
 }
@@ -82,9 +84,10 @@ void	ft_sort(t_a *a)
 	}
 	while (a->ramember-- > 0)
 		ft_ra(a);
+	
 	ft_minpos(a, 0, a->lst_len);
 	ft_maxpos(a, 0, a->lst_len);
-	ft_move_right(a, a->med, a->maxval, a->lst_len);
+	ft_move_right(a, a->med, a->maxval, a->lst_len - a->minpos - 1);
 	//ft_printlist(a);
 	i = 0;
 	k = a->lst_len - a->sep;
@@ -94,8 +97,6 @@ void	ft_sort(t_a *a)
 		ft_runstrat(a);
 		i++;
 	}
-	ft_minpos(a, 0, a->lst_len);
-	ft_maxpos(a, 0, a->lst_len);
 	while (a->ramember-- > 0)
 		ft_ra(a);
 	//printf("_____________\nthe end\n");
@@ -105,29 +106,15 @@ void	ft_sort(t_a *a)
 }
 
 /*
-void	ft_sort_backup(t_a *a)
+void	ft_sort(t_a *a)
 {
 	int	i;
 	int	k;
-	a->sep = a->lst_len;
-	ft_med(a, 0, a->lst_len - 1);
 
-	ft_ra(a);
-	ft_sa(a);
-	ft_ra(a);
-	ft_sa(a);
-	ft_ra(a);
-	ft_ra(a);
+	ft_initializer(a);
+	ft_move_right(a, a->minval, a->med, a->lst_len);
 
-
-	ft_minpos(a, 0, a->lst_len);
-	ft_maxpos(a, 0, a->lst_len);
-	ft_printlist(a);
-	printf("Voici la situation initiale\n*****************************");
-	ft_move_right(a, a->minval, a->med);
-
-
-	ft_printlist(a);
+	//ft_printlist(a);
 
 	i = 0;
 	k = a->lst_len - a->sep;
@@ -137,10 +124,13 @@ void	ft_sort_backup(t_a *a)
 		ft_runstrat(a);
 		i++;
 	}
-
+	while (a->ramember-- > 0)
+		ft_ra(a);
+	
 	ft_minpos(a, 0, a->lst_len);
 	ft_maxpos(a, 0, a->lst_len);
-	ft_move_right(a, a->med, a->maxval);
+	ft_move_right(a, a->med, a->maxval, a->lst_len - a->minpos - 1);
+	//ft_printlist(a);
 	i = 0;
 	k = a->lst_len - a->sep;
 	while (i < k)
@@ -149,6 +139,12 @@ void	ft_sort_backup(t_a *a)
 		ft_runstrat(a);
 		i++;
 	}
-	ft_ra(a);
-	ft_printlist(a);
+	while (a->ramember-- > 0)
+		ft_ra(a);
+	//printf("_____________\nthe end\n");
+	ft_minpos(a, 0, a->lst_len);
+	ft_maxpos(a, 0, a->lst_len);
+	//ft_printlist(a);
+}
+
 }*/

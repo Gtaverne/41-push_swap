@@ -8,7 +8,7 @@ SRC		=	pushswap.c \
 			srcs/parsing.c srcs/split.c \
 			\
 			srcs/swappers.c srcs/swappers2.c srcs/rev_med.c \
-			srcs/sort.c
+			srcs/sort.c srcs/sort2.c
 
 OBJ 	=	$(addprefix $(OBJDIR)/, $(SRC:.c=.o))
 CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
