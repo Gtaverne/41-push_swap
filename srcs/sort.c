@@ -57,11 +57,16 @@ void	ft_initializer(t_a *a)
 	ft_med(a, 0, a->lst_len - 1);
 	ft_minpos(a, 0, a->lst_len);
 	ft_maxpos(a, 0, a->lst_len);
+	if (BATCHSIZE >= a->lst_len / 2)
+		return ;
 	a->numquant = a->lst_len / BATCHSIZE + (a->lst_len % BATCHSIZE > 0);
 	a->quantile = malloc(sizeof(int) * a->numquant);
-	ft
-	//ft_printlist(a);
-	//printf("Voici la situation initiale\n*****************************");
+	if (!a->quantile)
+		ft_cleanexit(a, "KO, Malloc failed\n", 2);
+	ft_quantcal(a);
+	ft_quantopt(a);
+	ft_printlist(a);
+	printf("Voici la situation initiale\n*****************************");
 }
 
 void	ft_sort(t_a *a)
@@ -70,39 +75,42 @@ void	ft_sort(t_a *a)
 	int	k;
 
 	ft_initializer(a);
-	ft_move_right(a, a->minval, a->med, a->lst_len);
-
-	//ft_printlist(a);
-
-	i = 0;
-	k = a->lst_len - a->sep;
-	while (i < k)
-	{
-		ft_findstrat(a);
-		ft_runstrat(a);
-		i++;
-	}
-	while (a->ramember-- > 0)
-		ft_ra(a);
 	
-	ft_minpos(a, 0, a->lst_len);
-	ft_maxpos(a, 0, a->lst_len);
-	ft_move_right(a, a->med, a->maxval, a->lst_len - a->minpos - 1);
-	//ft_printlist(a);
-	i = 0;
-	k = a->lst_len - a->sep;
-	while (i < k)
+	if (BATCHSIZE >= a->lst_len / 2)
 	{
-		ft_findstrat(a);
-		ft_runstrat(a);
-		i++;
+		ft_move_right(a, a->minval, a->med, a->lst_len);
+		i = 0;
+		k = a->lst_len - a->sep;
+		while (i < k)
+		{
+			ft_findstrat(a);
+			ft_runstrat(a);
+			i++;
+		}
+		while (a->ramember-- > 0)
+			ft_ra(a);
+		
+		ft_minpos(a, 0, a->lst_len);
+		ft_maxpos(a, 0, a->lst_len);
+		ft_move_right(a, a->med, a->maxval, a->lst_len - a->minpos - 1);
+		//ft_printlist(a);
+		i = 0;
+		k = a->lst_len - a->sep;
+		while (i < k)
+		{
+			ft_findstrat(a);
+			ft_runstrat(a);
+			i++;
+		}
+		while (a->ramember-- > 0)
+			ft_ra(a);
+		//printf("_____________\nthe end\n");
+		ft_minpos(a, 0, a->lst_len);
+		ft_maxpos(a, 0, a->lst_len);
+		return ;
+		//ft_printlist(a);
 	}
-	while (a->ramember-- > 0)
-		ft_ra(a);
-	//printf("_____________\nthe end\n");
-	ft_minpos(a, 0, a->lst_len);
-	ft_maxpos(a, 0, a->lst_len);
-	//ft_printlist(a);
+	ft_quantopt(a);
 }
 
 /*

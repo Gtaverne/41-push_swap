@@ -46,7 +46,7 @@ void	ft_convert_list_to_int(t_a *a)
 		while (k < i)
 		{
 			if (a->lst[k] == a->lst[i])
-				ft_cleanexit(a, "KO\n", 2);
+				ft_cleanexit(a, "KO: il y a un doublon\n", 2);
 			k++;
 		}
 		i++;
