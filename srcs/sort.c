@@ -59,6 +59,8 @@ void	ft_sort(t_a *a)
 
 	ft_initializer(a);
 	
+	if (a->lst_len <= 10)
+		ft_sort_short_chain(a);
 	if (a->lst_len < SPLITTER)
 	{
 		ft_move_right(a, a->minval, a->med, a->lst_len);
@@ -70,7 +72,7 @@ void	ft_sort(t_a *a)
 			ft_runstrat(a);
 			i++;
 		}
-		while (a->ramember-- > 0)
+		while (a->ramember-- + a->use_rr > 0)
 			ft_ra(a);
 		ft_minpos(a, 0, a->lst_len);
 		ft_maxpos(a, 0, a->lst_len);
