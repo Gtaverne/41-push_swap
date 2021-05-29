@@ -1,75 +1,78 @@
 #include "../includes/pushswap.h"
 
-void	ft_quantcal2(t_a *a, int *tab)
+void	ft_strat_zero(t_a *a)
 {
 	int	i;
-
-	i = 1;
-	while (a->lst_len > i * BATCHSIZE)
-	{
-		a->quantile[i - 1] = tab[BATCHSIZE * i];
-		i++;
-	}
-	a->quantile[i - 1] = a->minval;
-	//printf("Quantiles : %d\n", a->numquant);
-	i = -1;
-	/*while (++i < a->numquant)
-		printf(" %d : %d | ", i, a->quantile[i]);*/
-}
-
-void	ft_quantcal(t_a *a)
-{
-	int	i;
-	int	k;
-	int tmp;
-	int	tab[a->lst_len];
 
 	i = -1;
-	while (++i < a->lst_len)
-		tab[i] = a->lst[i];
-	i = 0;
-	while (i < a->lst_len)
+	if (a->use_rr)
 	{
-		k = 0;
-		while (k < i)
+		if (a->strat_tab[a->strat] > 2)
 		{
-			if (tab[k] < tab[i])
-			{
-				tmp = tab[k];
-				tab[k] = tab[i];
-				tab[i] = tmp;
-			}
-			k++;
-		}
-		i++;
-	}
-	ft_quantcal2(a, tab);
-}
-
-void	ft_quantopt(t_a *a)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	j = 0;
-	while (j < a->numquant - 1)
-	{
-		ft_minpos(a, 0, a->lst_len);
-		ft_maxpos(a, 0, a->lst_len);
-		if (j == 0)
-			ft_move_right(a, a->quantile[j + 1], a->quantile[j], 0);
-		ft_move_right(a, a->quantile[j + 1], a->quantile[j], a->lst_len - a->minpos - 1);
-		i = 0;
-		k = a->lst_len - a->sep;
-		while (i < k)
-		{
-			ft_findstrat(a);
-			ft_runstrat(a);
 			i++;
+			ft_rr(a);
 		}
-		while (a->ramember-- > 0)
+		else
 			ft_ra(a);
-		j++;
+		a->use_rr = 0;		
 	}
+	while (++i < a->strat_tab[a->strat] - 2)
+		ft_rb(a);
+	ft_pa(a);
+	a->use_rr = 1;
+}
+
+void	ft_strat_one(t_a *a)
+{
+	int	i;
+
+	i = -1;
+	if (a->use_rr)
+	{
+		ft_ra(a);
+		a->use_rr = 0;		
+	}
+	while (++i < a->strat_tab[a->strat] - 2)
+		ft_rrb(a);
+	ft_pa(a);
+	a->use_rr = 1;
+
+}
+
+void	ft_strat_two(t_a *a)
+{
+	int	i;
+
+	i = -1;
+	if (a->use_rr)
+	{
+		if (a->strat_tab[a->strat] > 2)
+		{
+			i++;
+			ft_rr(a);
+		}
+		else
+			ft_ra(a);
+		a->use_rr = 0;		
+	}
+	while (++i < a->strat_tab[a->strat] - 1)
+		ft_rb(a);
+	ft_pa(a);
+	a->ramember++;
+}
+
+void	ft_strat_three(t_a *a)
+{
+	int	i;
+
+	i = -1;
+	if (a->use_rr)
+	{
+		ft_ra(a);
+		a->use_rr = 0;		
+	}
+	while (++i < a->strat_tab[a->strat] - 1)
+		ft_rrb(a);
+	ft_pa(a);
+	a->ramember++;
 }
