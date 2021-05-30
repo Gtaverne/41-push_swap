@@ -6,7 +6,7 @@
 # include <stdio.h>
 
 # define DEBUG 1
-# define SPLITTER 600
+# define SPLITTER 10
 
 typedef struct s_a {
 	int		ac;
