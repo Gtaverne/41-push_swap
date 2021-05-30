@@ -58,10 +58,10 @@ void	ft_sort(t_a *a)
 	int	k;
 
 	ft_initializer(a);
-	
-	if (a->lst_len <= 10)
+	ft_already_sorted(a);
+	if (a->lst_len <= 5)
 		ft_sort_short_chain(a);
-	if (a->lst_len < SPLITTER)
+	else if (a->lst_len < SPLITTER)
 	{
 		ft_move_right(a, a->minval, a->med, a->lst_len);
 		i = 0;

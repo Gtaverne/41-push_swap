@@ -64,7 +64,13 @@ void	ft_strat_one(t_a *a);
 void	ft_strat_two(t_a *a);
 void	ft_strat_three(t_a *a);
 void	ft_sort_long_chain(t_a *a);
+
+//Short sorts
 void	ft_sort_short_chain(t_a *a);
+void	ft_sort_two_left(t_a *a);
+void	ft_sort_two_right(t_a *a);
+void	ft_sort_three(t_a *a);
+void	ft_already_sorted(t_a *a);
 
 //Swappers
 void	ft_sa(t_a *a);
