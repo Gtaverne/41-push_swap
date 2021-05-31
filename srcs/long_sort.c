@@ -21,62 +21,23 @@ void	ft_move_left(t_a *a, int val_min, int val_max, int num)
 	a->rbmember = 0;
 }
 
-void	ft_move_right_until_min(t_a *a)
+void	ft_move_right_while_under_val(t_a *a, int val)
 {
-	while (a->lst[a->sep - 1] > a->minval)
-	{
+	while (a->lst[a->sep - 1] <= val)
 		ft_pb(a);
-	}
 }
 
-void	ft_cut_and_sort_right(t_a *a)
+void	ft_move_right_while_over_val(t_a *a, int val)
+{
+	while (a->lst[a->sep - 1] > val)
+		ft_pb(a);
+}
+
+void	ft_sort_right_and_bring_it_left(t_a *a)
 {
 	int	i;
 	int	k;
-	
-	ft_med(a, a->sep, a->lst_len - 1);
-	ft_maxpos(a, a->sep, a->lst_len);
-	ft_minpos(a, a->sep, a->lst_len);
-	printf("Juste avant move left\n");
-	ft_printlist(a);
-	ft_move_left(a, a->med, a->maxval, a->lst_len - a->sep);
-	printf("Juste apres move left\n");
-	ft_printlist(a);
-	i = 0;
-	k = a->lst_len - a->sep;
-	while (i < k)
-	{
-		ft_findstrat(a);
-		ft_runstrat(a);
-		i++;
-	}
-	ft_printlist(a);
-	k = a->med;
-	i = a->lst_len - 1;
-	ft_med(a, 0, a->lst_len - 1);
-	ft_move_right(a, k, a->med, (1 +a->lst_len) / 2);	
-	ft_printlist(a);
-	i = 0;
-	k = a->lst_len - a->sep;
-	while (i < k)
-	{
-		ft_findstrat(a);
-		ft_runstrat(a);
-		i++;
-	}
-}
 
-void	ft_cut_and_sort_right_2(t_a *a)
-{
-	int	i;
-	int	k;
-	
-	ft_med(a, a->sep, a->lst_len - 1);
-	ft_maxpos(a, a->sep, a->lst_len);
-	ft_minpos(a, a->sep, a->lst_len);
-	ft_move_left(a, a->med + 1, a->maxval, a->lst_len - a->sep);
-	printf("Juste apres move left\n");
-	ft_printlist(a);
 	i = 0;
 	k = a->lst_len - a->sep;
 	while (i < k)
@@ -85,39 +46,54 @@ void	ft_cut_and_sort_right_2(t_a *a)
 		ft_runstrat(a);
 		i++;
 	}
-	ft_printlist(a);
-	k = a->med;
-	i = a->lst_len - 1;
-	ft_med(a, 0, a->lst_len - 1);
-	ft_minpos(a, 0, a->lst_len);
-	ft_move_right_until_min(a);
-	printf("WE MOVED RIGHT UNTIL MIN\n");
-	ft_printlist(a);
-	i = 0;
-	k = a->lst_len - a->sep;
-	while (i < k)
-	{
-		ft_findstrat(a);
-		ft_runstrat(a);
-		i++;
-	}
+	while (a->ramember --  + a->use_rr > 0)
+		ft_ra(a);
 }
 
 void	ft_sort_long_chain(t_a *a)
 {
-	printf("Juste avant move right 1\n");
-	ft_printlist(a);
 	ft_move_right(a, a->minval, a->med, a->lst_len);
-	ft_cut_and_sort_right(a);
-	while (a->ramember-- > 0)
+	ft_med(a, a->sep, a->lst_len - 1);
+	ft_move_left(a, a->med, a->maxval, a->lst_len - a->sep);
+	ft_sort_right_and_bring_it_left(a);
+	ft_med(a, 0, a->lst_len - 1);
+	ft_move_right_while_under_val(a, a->med);
+	ft_sort_right_and_bring_it_left(a);
+	ft_minpos(a, 0, a->lst_len);
+	ft_move_right_while_over_val(a, a->minval);
+	ft_med(a, a->sep, a->lst_len - 1);
+	ft_maxpos(a, a->sep, a->lst_len);
+	ft_move_left(a, a->med, a->maxval, a->lst_len - a->sep);
+	ft_sort_right_and_bring_it_left(a);
+	ft_minpos(a, 0, a->lst_len);
+	ft_move_right_while_over_val(a, a->minval);
+	ft_sort_right_and_bring_it_left(a);
+	ft_minpos(a, 0, a->lst_len);
+	while (a->lst[a->lst_len - 1] > a->minval)
 		ft_ra(a);
-	printf("ABOUT TO MOVE RIGHT\n");
-	ft_printlist(a);
-	ft_move_right_until_min(a);
-	printf("WE MOVED RIGHT UNTIL MIN\n");
-	ft_printlist(a);
-	ft_cut_and_sort_right_2(a);
-	while (a->ramember-- > 0)
-		ft_ra(a);
-	ft_printlist(a);
 }
+
+/*
+void	ft_sort_long_chain_backup(t_a *a)
+{
+	ft_move_right(a, a->minval, a->med, a->lst_len);
+	ft_med(a, a->sep, a->lst_len - 1);
+	ft_move_left(a, a->med, a->maxval, a->lst_len - a->sep);
+	ft_sort_right_and_bring_it_left(a);
+	ft_med(a, 0, a->lst_len - 1);
+	ft_move_right_while_under_val(a, a->med);
+	ft_sort_right_and_bring_it_left(a);
+	ft_minpos(a, 0, a->lst_len);
+	ft_move_right_while_over_val(a, a->minval);
+	ft_med(a, a->sep, a->lst_len - 1);
+	ft_maxpos(a, a->sep, a->lst_len);
+	ft_move_left(a, a->med, a->maxval, a->lst_len - a->sep);
+	ft_sort_right_and_bring_it_left(a);
+	ft_minpos(a, 0, a->lst_len);
+	ft_move_right_while_over_val(a, a->minval);
+	ft_sort_right_and_bring_it_left(a);
+	ft_minpos(a, 0, a->lst_len);
+	while (a->lst[a->lst_len - 1] > a->minval)
+		ft_ra(a);
+}
+*/

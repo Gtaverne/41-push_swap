@@ -4,7 +4,7 @@ HEADER	=	includes/pushswap.h
 OBJDIR	=	object
 SRC		=	pushswap.c \
 			srcs/utils.c srcs/utils2.c \
-			srcs/in-utils.c \
+			ignore_it/in-utils.c \
 			srcs/parsing.c srcs/split.c \
 			\
 			srcs/swappers.c srcs/swappers2.c srcs/rev_med.c \

@@ -3,7 +3,7 @@
 void	ft_rrr(t_a *a)
 {
 	int	tmp;
-	int i;
+	int	i;
 	
 	a->opcount++;
 	ft_putstr_fd("rrr\n", 1);
