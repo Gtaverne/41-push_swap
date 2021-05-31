@@ -75,3 +75,28 @@ void	ft_strat_three(t_a *a)
 	ft_pa(a);
 	a->ramember++;
 }
+
+int	*ft_brutal_sort(int *tab, int init, int end)
+{
+	int	i;
+	int	k;
+	int	tmp;
+
+	i = 0;
+	while (i < end - init)
+	{
+		k = 0;
+		while (k < i)
+		{
+			if (tab[k] < tab[i])
+			{
+				tmp = tab[k];
+				tab[k] = tab[i];
+				tab[i] = tmp;
+			}
+			k++;
+		}
+		i++;
+	}
+	return (tab);
+}

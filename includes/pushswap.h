@@ -5,7 +5,7 @@
 # include <stdlib.h>
 
 # define DEBUG 1
-# define SPLITTER 50
+# define SPLITTER 150
 
 typedef struct s_a {
 	int		ac;
@@ -50,6 +50,7 @@ void		ft_parser(t_a *a);
 //Sort
 void		ft_sort(t_a *a);
 void		ft_med(t_a *a, int init, int end);
+int			*ft_brutal_sort(int *tab, int init, int end);
 void		ft_minpos(t_a *a, int init, int end);
 void		ft_maxpos(t_a *a, int init, int end);
 void		ft_move_right(t_a *a, int val_min, int val_max, int num);
@@ -61,6 +62,7 @@ void		ft_strat_one(t_a *a);
 void		ft_strat_two(t_a *a);
 void		ft_strat_three(t_a *a);
 void		ft_sort_long_chain(t_a *a);
+void		ft_sort_right_and_bring_it_left(t_a *a);
 
 //Short sorts
 void		ft_sort_short_chain(t_a *a);

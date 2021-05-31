@@ -3,7 +3,7 @@
 void	ft_move_left(t_a *a, int val_min, int val_max, int num)
 {
 	int	i;
-	int k;
+	int	k;
 
 	i = 0;
 	k = a->sep;
@@ -46,7 +46,7 @@ void	ft_sort_right_and_bring_it_left(t_a *a)
 		ft_runstrat(a);
 		i++;
 	}
-	while (a->ramember --  + a->use_rr > 0)
+	while (a->ramember -- + a->use_rr > 0)
 		ft_ra(a);
 }
 

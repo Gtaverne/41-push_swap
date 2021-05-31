@@ -5,4 +5,4 @@ a.out
 test.txt
 .vscode
 checker_Mac
-ignore*
+#ignore*
