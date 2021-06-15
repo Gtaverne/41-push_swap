@@ -36,7 +36,7 @@ void	ft_convert_list_to_int(t_a *a)
 		exit(1);
 	while (i < a->lst_len)
 	{
-		a->lst[i] = ft_atoi(a->raw_str[a->lst_len - 1 - i]);
+		a->lst[i] = ft_atoi(a->raw_str[a->lst_len - 1 - i], a);
 		i++;
 	}
 	i = 1;

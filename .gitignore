@@ -2,6 +2,7 @@ object/*.o
 object/*/*.o
 push_swap
 a.out
-test.txt
+test.sh
 .vscode
 checker_Mac
+#ignore*

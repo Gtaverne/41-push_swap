@@ -13,10 +13,7 @@ void	ft_initstruct(t_a *a, int ac, char **av)
 	a->minval = 0;
 	a->maxpos = 0;
 	a->maxval = 0;
-	a->quantile = 0;
-	a->ramember = 0;
-	a->rame = 0;
-	a->strat = 0;
+	a->use_rr = 0;
 }
 
 void	ft_cleanexit(t_a *a, char *exit_message, int fd)
@@ -25,8 +22,6 @@ void	ft_cleanexit(t_a *a, char *exit_message, int fd)
 		ft_freesplit(a->raw_str);
 	if (a->lst != 0)
 		free (a->lst);
-	if (a->quantile != 0)
-		free (a->quantile);
 	if (DEBUG == 0 && exit_message[0] == 'K')
 		ft_putstr_fd("KO\n", fd);
 	else

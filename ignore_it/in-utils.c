@@ -1,4 +1,5 @@
 #include "../includes/pushswap.h"
+#include <stdio.h>
 
 void	ft_printlist(t_a *a)
 {

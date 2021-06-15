@@ -17,7 +17,7 @@ void	ft_putstr_fd(char *str, int fd)
 	write(fd, str, ft_strlen(str));
 }
 
-int	ft_atoi(const char *nptr)
+long int	ft_atoi(const char *nptr, t_a *a)
 {
 	long long int		i;
 	long long int		r;
@@ -39,6 +39,8 @@ int	ft_atoi(const char *nptr)
 			break ;
 		i++;
 	}
+	if (r >= 2147483647)
+		ft_cleanexit(a, "KO, value out of int range", 2);
 	return (s * r);
 }
 
