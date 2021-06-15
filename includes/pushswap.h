@@ -6,7 +6,7 @@
 # include <stdio.h>
 
 # define DEBUG 1
-# define BATCHSIZE 3
+# define BATCHSIZE 5000
 
 typedef struct s_a {
 	int		ac;
@@ -23,6 +23,7 @@ typedef struct s_a {
 	int		strat_tab[4];
 	int		strat;
 	int		ramember;
+	int		rame;
 	int		*quantile;
 	int		numquant;
 	int		opcount;
@@ -58,6 +59,7 @@ void	ft_quantcal(t_a *a);
 void	ft_quantopt(t_a *a);
 void	ft_findstrat(t_a *a);
 void	ft_runstrat(t_a *a);
+int		ft_remember_rame(t_a *a);
 
 //Swappers
 void	ft_sa(t_a *a);

@@ -19,7 +19,7 @@ void	ft_findstrat(t_a *a)
 	a->strat = 0;
 	while (i < 4)
 	{
-		if (a->strat_tab[i] < a->strat_tab[a->strat])
+		if (a->strat_tab[i] < a->strat_tab[a->strat] + i / 2)
 			a->strat = i;
 		i++;
 	}
@@ -27,11 +27,30 @@ void	ft_findstrat(t_a *a)
 	//printf("Here is the strat : %d and its value %d\n", a->strat, a->strat_tab[a->strat]);
 }
 
+int	ft_remember_rame(t_a *a)
+{
+	if (a->rame == 1)
+	{
+		if (a->strat % 2 == 0 && a->strat_tab[a->strat] + a->strat / 2 - 2 >= 1)
+		{
+			ft_rr(a);
+			a->rame = 0;
+			ft_printlist(a);
+			printf("yes, a a->rame\n");
+			return (1);
+		}
+		else
+			ft_ra(a);
+	}
+	return (0);
+}
+
 void	ft_runstrat(t_a *a)
 {
 	int	i;
 
 	i = -1;
+	/*i = ft_remember_rame(a);*/
 	if (a->strat == 0)
 		while (++i < a->strat_tab[a->strat] - 2)
 			ft_rb(a);
@@ -47,13 +66,14 @@ void	ft_runstrat(t_a *a)
 	ft_pa(a);
 	if (a->strat < 2)
 		ft_ra(a);
-	else
+	if (a->strat >= 2)
 		a->ramember++;	
 }
 
 void	ft_initializer(t_a *a)
 {
 	a->sep = a->lst_len;
+	a->rame = 0;
 	ft_med(a, 0, a->lst_len - 1);
 	ft_minpos(a, 0, a->lst_len);
 	ft_maxpos(a, 0, a->lst_len);
@@ -64,9 +84,9 @@ void	ft_initializer(t_a *a)
 	if (!a->quantile)
 		ft_cleanexit(a, "KO, Malloc failed\n", 2);
 	ft_quantcal(a);
-	ft_quantopt(a);
+	printf("\n\nVoici la situation initiale\n*****************************");
 	ft_printlist(a);
-	printf("Voici la situation initiale\n*****************************");
+	printf("C'est parti\n*****************************");
 }
 
 void	ft_sort(t_a *a)
@@ -89,7 +109,7 @@ void	ft_sort(t_a *a)
 		}
 		while (a->ramember-- > 0)
 			ft_ra(a);
-		
+		a->rame = 0;
 		ft_minpos(a, 0, a->lst_len);
 		ft_maxpos(a, 0, a->lst_len);
 		ft_move_right(a, a->med, a->maxval, a->lst_len - a->minpos - 1);
@@ -111,6 +131,11 @@ void	ft_sort(t_a *a)
 		//ft_printlist(a);
 	}
 	ft_quantopt(a);
+	printf("\n\nVoici la situation finale\n");
+	ft_minpos(a, 0, a->lst_len);
+	ft_maxpos(a, 0, a->lst_len);
+	ft_printlist(a);
+	printf("*****************************\n");
 }
 
 /*

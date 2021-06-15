@@ -13,6 +13,10 @@ void	ft_initstruct(t_a *a, int ac, char **av)
 	a->minval = 0;
 	a->maxpos = 0;
 	a->maxval = 0;
+	a->quantile = 0;
+	a->ramember = 0;
+	a->rame = 0;
+	a->strat = 0;
 }
 
 void	ft_cleanexit(t_a *a, char *exit_message, int fd)

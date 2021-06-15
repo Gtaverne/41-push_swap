@@ -11,10 +11,10 @@ void	ft_quantcal2(t_a *a, int *tab)
 		i++;
 	}
 	a->quantile[i - 1] = a->minval;
-	//printf("Quantiles : %d\n", a->numquant);
+	printf("Quantiles : %d\n", a->numquant);
 	i = -1;
-	/*while (++i < a->numquant)
-		printf(" %d : %d | ", i, a->quantile[i]);*/
+	while (++i < a->numquant)
+		printf(" %d : %d | ", i, a->quantile[i]);
 }
 
 void	ft_quantcal(t_a *a)
@@ -52,14 +52,17 @@ void	ft_quantopt(t_a *a)
 	int	j;
 	int	k;
 
-	j = 0;
-	while (j < a->numquant - 1)
+	j = a->numquant - 1;
+	while (j > 0)
 	{
 		ft_minpos(a, 0, a->lst_len);
 		ft_maxpos(a, 0, a->lst_len);
 		if (j == 0)
-			ft_move_right(a, a->quantile[j + 1], a->quantile[j], 0);
-		ft_move_right(a, a->quantile[j + 1], a->quantile[j], a->lst_len - a->minpos - 1);
+			ft_move_right(a, a->quantile[j], a->quantile[j - 1], 0);
+		else if (j > 0)
+			ft_move_right(a, a->quantile[j], a->quantile[j - 1], a->lst_len - a->minpos);
+		else
+			ft_move_right(a, a->quantile[j], a->maxval + 1, a->lst_len - a->minpos);
 		i = 0;
 		k = a->lst_len - a->sep;
 		while (i < k)
@@ -70,6 +73,6 @@ void	ft_quantopt(t_a *a)
 		}
 		while (a->ramember-- > 0)
 			ft_ra(a);
-		j++;
+		j--;
 	}
 }
