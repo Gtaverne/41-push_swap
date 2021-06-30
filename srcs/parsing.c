@@ -46,7 +46,7 @@ void	ft_convert_list_to_int(t_a *a)
 		while (k < i)
 		{
 			if (a->lst[k] == a->lst[i])
-				ft_cleanexit(a, "KO: il y a un doublon\n", 2);
+				ft_cleanexit(a, "Error: il y a un doublon\n", 2);
 			k++;
 		}
 		i++;
@@ -65,12 +65,12 @@ void	ft_valid_characters(t_a *a)
 		while (a->raw_str[i][k] != 0)
 		{
 			if (k == 0 && !is_insep(a->raw_str[i][k], "-0123456789"))
-				ft_cleanexit(a, "KO : invalid Character\n", 2);
+				ft_cleanexit(a, "Error : invalid Character\n", 2);
 			if (k > 0 && !is_insep(a->raw_str[i][k], "0123456789"))
-				ft_cleanexit(a, "KO : invalid Character\n", 2);
+				ft_cleanexit(a, "Error : invalid Character\n", 2);
 			if (k == 0 && a->raw_str[i][k] == '-' \
 			&& !is_insep(a->raw_str[i][k + 1], "0123456789"))
-				ft_cleanexit(a, "KO : check signs\n", 2);
+				ft_cleanexit(a, "Error : check signs\n", 2);
 			k++;
 		}
 		i++;
@@ -82,7 +82,7 @@ void	ft_parser(t_a *a)
 {
 	if (a->ac < 2)
 	{
-		ft_putstr_fd("KO : Too few arguments\n", 2);
+		ft_putstr_fd("Error : Too few arguments\n", 2);
 		exit (0);
 	}
 	else if (a->ac == 2)

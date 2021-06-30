@@ -22,9 +22,11 @@ void	ft_cleanexit(t_a *a, char *exit_message, int fd)
 		ft_freesplit(a->raw_str);
 	if (a->lst != 0)
 		free (a->lst);
-	if (DEBUG == 0 && exit_message[0] == 'K')
-		ft_putstr_fd("KO\n", fd);
-	else
+	if (!exit_message)
+		exit (fd - 1);
+	else if (DEBUG == 1 && exit_message)
 		ft_putstr_fd(exit_message, fd);
+	else
+		ft_putstr_fd("Error\n", fd);
 	exit (fd - 1);
 }

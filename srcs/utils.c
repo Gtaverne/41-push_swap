@@ -39,8 +39,8 @@ long int	ft_atoi(const char *nptr, t_a *a)
 			break ;
 		i++;
 	}
-	if (r >= 2147483647)
-		ft_cleanexit(a, "KO, value out of int range", 2);
+	if (r > 2147483647 + (1 - s) / 2)
+		ft_cleanexit(a, "Error, value out of int range\n", 2);
 	return (s * r);
 }
 

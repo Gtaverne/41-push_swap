@@ -5,7 +5,7 @@ void	ft_already_sorted(t_a *a)
 	int	i;
 
 	i = 0;
-	while (i < a->lst_len - 2)
+	while (i < a->lst_len - 1)
 	{
 		if (a->lst[i] < a->lst[i + 1])
 			return ;
@@ -59,7 +59,7 @@ void	ft_sort_short_chain(t_a *a)
 	if (a->sep == 4)
 	{
 		ft_med(a, 0, 4);
-		ft_move_right(a, a->minval - 1, a->med, 4);
+		ft_move_right(a, a->minval, a->med + 1, 4);
 		ft_sort_two_left(a);
 		ft_sort_two_right(a);
 		ft_pa(a);
@@ -68,7 +68,7 @@ void	ft_sort_short_chain(t_a *a)
 	if (a->sep == 5)
 	{
 		ft_med(a, 0, 5);
-		ft_move_right(a, a->minval - 1, a->med - 1, 5);
+		ft_move_right(a, a->minval, a->med, 5);
 		ft_sort_three(a);
 		ft_sort_two_right(a);
 		ft_pa(a);

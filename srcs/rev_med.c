@@ -35,7 +35,7 @@ void	ft_med(t_a *a, int init, int end)
 
 	tab = malloc(sizeof(int) * (end - init + 1));
 	if (!tab)
-		ft_cleanexit(a, "KO, Malloc failed", 2);
+		ft_cleanexit(a, "Error, Malloc failed", 2);
 	i = -1;
 	while (++i < end - init)
 		tab[i] = a->lst[i + init];
